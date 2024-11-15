@@ -13,7 +13,7 @@
 </head>
 <body>
 
-    <h1>Welcome to Quotify</h1>
+    <h1>Welcome to Quotify.</h1>
     
 </body>
 </html>
