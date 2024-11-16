@@ -11,7 +11,11 @@ body {
   margin: 0;
   font-family: "Poppins", sans-serif;
 }
-
+/* 
+===========================================================
+HEADER Section Styling
+===========================================================
+*/
 nav {
   padding: 5px 5%;
   display: flex;
@@ -144,9 +148,13 @@ nav ul li a:hover {
     display: none;
   }
 }
-
+/* 
+===========================================================
+Footer Section Styling
+===========================================================
+*/
 footer {
-  box-shadow: rgba(50, 50, 93, 0.5) 0px 4px 10px -2px,
+  box-shadow: rgb(0, 0, 0) 0px 4px 10px -2px,
     /* Stronger top shadow */ rgba(0, 0, 0, 0.4) 0px 2px 6px -2px;
 }
 
