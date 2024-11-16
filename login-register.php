@@ -8,12 +8,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/login-register.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <title>Quotify</title>
 </head>
 <body>
+
+<nav>
+      <div class="logo">
+        <img src="picture/Logo64x64.png" alt="logo" />
+        <h1>Quotify</h1>
+      </div>
+      <ul>
+      <li>
+          <a href="index.php">Home</a>
+        </li>
+        <li>
+          <a href="list-kategorij.php">Categories</a>
+        </li>
+        <li>
+          <a href="list-quots.php">Quotes</a>
+        </li>
+        
+        <li>
+          <a href="create-quote.php">Create one</a>
+        </li>
+        <li>
+          <a href="login-register.php">Login</a>
+        </li>
+      </ul>
+      <div class="hamburger">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </nav>
+    <div class="menubar">
+      <ul>
+      <li>
+          <a href="index.php">Home</a>
+        </li>
+        <li>
+          <a href="list-kategorij.php">Categories</a>
+        </li>
+        <li>
+          <a href="list-quots.php">Quotes</a>
+        </li>
+        
+        <li>
+          <a href="create-quote.php">Create one</a>
+        </li>
+        <li>
+          <a href="login-register.php">Login</a>
+        </li>
+      </ul>
+    </div>
+
+
 <div class="login-register">
 <div class="container" id="container">
         <div class="form-container sign-up">

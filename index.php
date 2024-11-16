@@ -15,20 +15,24 @@
 <nav>
       <div class="logo">
         <img src="picture/Logo64x64.png" alt="logo" />
-        <h1>LOGO</h1>
+        <h1>Quotify</h1>
       </div>
       <ul>
         <li>
-          <a href="#">Home</a>
+          <a href="index.php">Home</a>
         </li>
         <li>
-          <a href="#">Services</a>
+          <a href="list-kategorij.php">Categories</a>
         </li>
         <li>
-          <a href="#">Blog</a>
+          <a href="list-quots.php">Quotes</a>
+        </li>
+        
+        <li>
+          <a href="create-quote.php">Create one</a>
         </li>
         <li>
-          <a href="#">Contact Us</a>
+          <a href="login-register.php">Login</a>
         </li>
       </ul>
       <div class="hamburger">
@@ -39,17 +43,21 @@
     </nav>
     <div class="menubar">
       <ul>
-        <li>
-          <a href="#">Home</a>
+      <li>
+          <a href="index.php">Home</a>
         </li>
         <li>
-          <a href="#">Services</a>
+          <a href="list-kategorij.php">Categories</a>
         </li>
         <li>
-          <a href="#">Blog</a>
+          <a href="list-quots.php">Quotes</a>
+        </li>
+        
+        <li>
+          <a href="create-quote.php">Create one</a>
         </li>
         <li>
-          <a href="#">Contact Us</a>
+          <a href="login-register.php">Login</a>
         </li>
       </ul>
     </div>
