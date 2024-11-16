@@ -1,6 +1,4 @@
 .login-register {
-  background-color: #c9d6ff;
-  background: linear-gradient(to right, #e2e2e2, #c9d6ff);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,7 +9,6 @@
 }
 
 .container {
-  background-color: #ffF;
   border-radius: 30px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
   position: relative;
@@ -41,7 +38,14 @@
 }
 
 .container button {
-  background-color: #512da8;
+  background-color: rgb(102, 33, 142);
+  background: linear-gradient(
+    90deg,
+    rgba(102, 33, 142, 1) 0%,
+    rgba(212, 28, 210, 1) 39%,
+    rgba(0, 228, 255, 1) 75%,
+    rgba(49, 39, 191, 1) 100%
+  );
   color: #fff;
   font-size: 12px;
   padding: 10px 45px;
@@ -157,9 +161,14 @@
 }
 
 .toggle {
-  background-color: #512da8;
-  height: 100%;
-  background: linear-gradient(to right, #5c6bc0, #512da8);
+  background-color: rgb(102, 33, 142);
+  background: linear-gradient(
+    90deg,
+    rgba(102, 33, 142, 1) 0%,
+    rgba(212, 28, 210, 1) 39%,
+    rgba(0, 228, 255, 1) 75%,
+    rgba(49, 39, 191, 1) 100%
+  );
   color: #fff;
   position: relative;
   left: -100%;
@@ -174,6 +183,14 @@
 }
 
 .toggle-panel {
+  background-color: rgb(102, 33, 142);
+  background: linear-gradient(
+    90deg,
+    rgba(102, 33, 142, 1) 0%,
+    rgba(212, 28, 210, 1) 39%,
+    rgba(0, 228, 255, 1) 75%,
+    rgba(49, 39, 191, 1) 100%
+  );
   position: absolute;
   width: 50%;
   height: 100%;
