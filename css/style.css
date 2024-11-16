@@ -62,7 +62,7 @@ nav ul li a:hover {
   display: none;
   cursor: pointer;
   position: fixed;
-  z-index: 1000;
+  z-index: 10;
 }
 
 .hamburger .line {
@@ -108,7 +108,7 @@ nav ul li a:hover {
   padding: 20% 0;
   background: rgba(255, 255, 255);
   transition: all 0.5s ease-in;
-  z-index: 999;
+  z-index: 9;
 }
 .active {
   left: 0;
