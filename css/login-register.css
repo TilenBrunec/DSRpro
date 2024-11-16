@@ -38,18 +38,11 @@
 }
 
 .container button {
-  background-color: rgb(102, 33, 142);
-  background: linear-gradient(
-    90deg,
-    rgba(102, 33, 142, 1) 0%,
-    rgba(212, 28, 210, 1) 39%,
-    rgba(0, 228, 255, 1) 75%,
-    rgba(49, 39, 191, 1) 100%
-  );
+  background: linear-gradient(to right, #b927fc 0%, #2c64fc 100%);
   color: #fff;
   font-size: 12px;
   padding: 10px 45px;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   border-radius: 8px;
   font-weight: 600;
   letter-spacing: 0.5px;
@@ -161,14 +154,7 @@
 }
 
 .toggle {
-  background-color: rgb(102, 33, 142);
-  background: linear-gradient(
-    90deg,
-    rgba(102, 33, 142, 1) 0%,
-    rgba(212, 28, 210, 1) 39%,
-    rgba(0, 228, 255, 1) 75%,
-    rgba(49, 39, 191, 1) 100%
-  );
+  background: linear-gradient(to right, #b927fc 0%, #2c64fc 100%);
   color: #fff;
   position: relative;
   left: -100%;
@@ -183,14 +169,6 @@
 }
 
 .toggle-panel {
-  background-color: rgb(102, 33, 142);
-  background: linear-gradient(
-    90deg,
-    rgba(102, 33, 142, 1) 0%,
-    rgba(212, 28, 210, 1) 39%,
-    rgba(0, 228, 255, 1) 75%,
-    rgba(49, 39, 191, 1) 100%
-  );
   position: absolute;
   width: 50%;
   height: 100%;

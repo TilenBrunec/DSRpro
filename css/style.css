@@ -24,6 +24,7 @@ nav {
 nav .logo {
   display: flex;
   align-items: center;
+  padding-left: 35px;
 }
 nav .logo img {
   height: 25px;
@@ -141,5 +142,123 @@ nav ul li a:hover {
   }
   nav ul {
     display: none;
+  }
+}
+
+footer {
+  box-shadow: rgba(50, 50, 93, 0.5) 0px 4px 10px -2px,
+    /* Stronger top shadow */ rgba(0, 0, 0, 0.4) 0px 2px 6px -2px;
+}
+
+.container-footer-all {
+  width: 90%; /* Reduced width for responsiveness */
+  max-width: 1140px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap; /* Allows items to wrap for smaller screens */
+  justify-content: space-around;
+  gap: 20px; /* Adds spacing between footer sections */
+}
+
+.footer-content {
+  flex: 1 1 300px; /* Flex-grow: 1, flex-shrink: 1, and minimum width of 300px */
+  margin: 10px;
+  text-align: center;
+}
+
+h3 {
+  font-size: 1.5rem; /* Responsive font sizing */
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.footer-content p {
+  max-width: 250px;
+  margin: auto;
+  padding: 7px;
+}
+
+.footer-content ul {
+  text-align: center;
+  padding: 0;
+}
+
+.list-footer {
+  padding: 0;
+}
+
+.list-footer li {
+  text-align: center;
+  list-style-type: none;
+  padding: 7px;
+  position: relative;
+}
+
+.list-footer li::before {
+  content: "";
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 100%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(to right, #b927fc 0%, #2c64fc 100%);
+  transition-duration: 0.5s;
+}
+
+.list-footer li:hover::before {
+  width: 70px;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: #b927fc;
+}
+
+.bottom-bar {
+  background: linear-gradient(to right, #b927fc 0%, #2c64fc 100%);
+  text-align: center;
+  padding: 10px 0;
+  margin-top: 50px;
+}
+
+.bottom-bar p {
+  color: #ffffff;
+  margin: 0;
+  font-size: 1rem;
+  padding: 7px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .container-footer-all {
+    flex-direction: column; /* Stack items vertically for smaller screens */
+    align-items: center;
+  }
+
+  .footer-content {
+    width: 100%; /* Full width for smaller screens */
+    text-align: center;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h3 {
+    font-size: 1.1rem;
+  }
+
+  .bottom-bar p {
+    font-size: 0.9rem;
+  }
+
+  .footer-content p {
+    font-size: 0.9rem;
   }
 }
