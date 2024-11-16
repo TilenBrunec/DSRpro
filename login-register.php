@@ -8,13 +8,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    
     <link rel="stylesheet" href="css/login-register.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Quotify</title>
 </head>
 <body>
-
+<!-- 
+============================================================
+=                                                          =
+=                         NAVIGATION                       =
+=                                                          =
+============================================================
+-->
 <nav>
       <div class="logo">
         <img src="picture/Logo64x64.png" alt="logo" />
@@ -30,7 +37,6 @@
         <li>
           <a href="list-quots.php">Quotes</a>
         </li>
-        
         <li>
           <a href="create-quote.php">Create one</a>
         </li>
@@ -55,7 +61,6 @@
         <li>
           <a href="list-quots.php">Quotes</a>
         </li>
-        
         <li>
           <a href="create-quote.php">Create one</a>
         </li>
@@ -65,7 +70,14 @@
       </ul>
     </div>
 
-
+<h1>Welcome to Quotify.</h1>
+<!-- 
+============================================================
+=                                                          =
+=                         FORM                             =
+=                                                          =
+============================================================
+-->
 <div class="login-register">
 <div class="container" id="container">
         <div class="form-container sign-up">

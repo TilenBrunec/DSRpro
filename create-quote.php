@@ -12,6 +12,13 @@
     <title>Quotify</title>
 </head>
 <body>
+  <!-- 
+============================================================
+=                                                          =
+=                         NAVIGATION                       =
+=                                                          =
+============================================================
+-->
 <nav>
       <div class="logo">
         <img src="picture/Logo64x64.png" alt="logo" />
@@ -27,7 +34,6 @@
         <li>
           <a href="list-quots.php">Quotes</a>
         </li>
-        
         <li>
           <a href="create-quote.php">Create one</a>
         </li>
@@ -52,7 +58,6 @@
         <li>
           <a href="list-quots.php">Quotes</a>
         </li>
-        
         <li>
           <a href="create-quote.php">Create one</a>
         </li>
