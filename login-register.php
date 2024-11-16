@@ -133,6 +133,7 @@
 </div>
 
     <script src="js/login-register.js"></script>
+    <script src="js/script.js"></script>
     
 </body>
 </html>

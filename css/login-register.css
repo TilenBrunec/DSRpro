@@ -1,5 +1,4 @@
 
-
 .login-register {
   background-color: #c9d6ff;
   background: linear-gradient(to right, #e2e2e2, #c9d6ff);
@@ -8,6 +7,8 @@
   justify-content: center;
   flex-direction: column;
   height: auto;
+  z-index: 1;
+  position: relative;
 }
 
 .container {
@@ -19,6 +20,7 @@
   width: 868px;
   max-width: 100%;
   min-height: 580px;
+  z-index: 2;
 }
 
 .container p {
