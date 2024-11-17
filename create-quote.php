@@ -9,6 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/create-quote.css">
     <title>Quotify</title>
 </head>
 <body>
@@ -66,12 +67,58 @@
         </li>
       </ul>
     </div>
+  <!-- 
+============================================================
+=                                                          =
+=                        CREATE QUOTE                      =
+=                                                          =
+============================================================
+-->
 
 
 
 
-
-    <h1>Welcome to Quotify.</h1>
+   
+    <div class="create-section">
+    <div class="container-create">
+    <!-- Title section -->
+    <div class="title-create">Create Your Quote</div>
+    <div class="content-create">
+      <!-- Registration form -->
+      <form action="#">
+        <div class="user-details-create">
+          <!-- Input for Category -->
+          <div class="input-box-create">
+            <span class="details-create">Category</span>
+            <input type="text" placeholder="Enter Category" required>
+          </div>
+          <!-- Input for qupti -->
+          <div class="input-box-create">
+            <span class="details-create">Quote</span>
+            <input type="text" placeholder="Enter your quote" required>
+          </div>
+          <!-- Input for Date -->
+          <div class="input-box-create">
+            <span class="details-create">Date</span>
+            <input type="date"  required>
+          </div>
+          <!-- Input for Phone Number -->
+          <div class="input-box-create">
+            <span class="details-create">Author</span>
+            <input type="text" placeholder="Enter an Author" required>
+          </div>
+        
+        </div>
+        
+        
+        <!-- Submit button -->
+        <div class="button">
+          <input type="submit" value="Crate">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
     <!-- 
 ============================================================
 =                                                          =
