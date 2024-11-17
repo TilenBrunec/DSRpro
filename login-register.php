@@ -90,7 +90,7 @@
                     <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
-                <span>or use your email for registeration</span>
+                <span>Become our newest member</span>
                 <input type="text" name="upo_ime" id="upo_ime" placeholder="Name" required/>
                 <input type="email" name="email" id="email" placeholder="Email" required/>
                 <input type="password" name="password" id="password" placeholder="Password" required/>
@@ -109,7 +109,7 @@
                     <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
-                <span>or use your email password</span>
+                <span>Log in with your account</span>
                 <input type="email" placeholder="Email">
                 <input type="password" placeholder="Password">
                 <a href="#">Forget Your Password?</a>

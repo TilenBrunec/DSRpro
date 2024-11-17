@@ -201,3 +201,19 @@
 .container.active .toggle-right {
   transform: translateX(200%);
 }
+
+@media (max-width: 700px) {
+  .container form {
+    padding: 0 10px;
+  }
+  .container h1 {
+    margin: 0;
+    padding: 0;
+  }
+}
+@media (max-width: 480px) {
+  .social-icons a {
+    width: 30px;
+    height: 30px;
+  }
+}
