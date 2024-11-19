@@ -79,10 +79,44 @@
 =                                                          =
 ============================================================
 -->
+<?php
+
+
+//preverimo, ce je uporabnik vnesel vse podatke v formo
+if (isset($_POST['upo_ime']) && isset($_POST['vloga']) && isset($_POST['mail']) 
+  && isset($_POST['geslo']) && isset($_POST['slika']) && isset($_POST['TK_drzava']))
+{
+  
+  //pridobivanje podatkov iz obrazca in shranjevanje v spremelnjivke
+  $upo_ime = $_POST['upo_ime'];
+  $vloga = $_POST['vloga'];
+  $mail = $_POST['mail'];
+  $geslo = $_POST['geslo'];
+  $slika = $_POST['slika'];
+  $TK_drzava = $_POST['TK_drzava'];
+    
+  // pripravimo SQL izraz - imenovani vsebniki namesto ? in implicitnega vnosa
+  //prepare je začetek prepared statementa. 
+  $stmt = $pdo->prepare("INSERT INTO uporabnik(upo_ime, vloga, mail, geslo, slika,TK_drzava) 
+  VALUES (:upo_ime, :vloga, :mail, :geslo, :slika, :TK_drzava)");
+  
+  // vežemo parametre
+  $stmt->bindParam(':upo_ime', $upo_ime);
+  $stmt->bindParam(':vloga', $vloga);
+  $stmt->bindParam(':mail', $mail);
+  $stmt->bindParam(':geslo', $geslo);
+  $stmt->bindParam(':slika', $slika);
+  $stmt->bindParam(':TK_drzava', $TK_drzava);
+  
+  $stmt->execute();
+}
+
+?>
+
 <div class="login-register">
 <div class="container" id="container">
         <div class="form-container sign-up">
-            <form>
+            <form  action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">>
                 <h1>Create Account</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -92,12 +126,13 @@
                 </div>
                 <span>Become our newest member</span>
                 <input type="text" name="upo_ime" id="upo_ime" placeholder="Name" required/>
-                <input type="email" name="email" id="email" placeholder="Email" required/>
-                <input type="password" name="password" id="password" placeholder="Password" required/>
-                <input type="dropdown" placeholder="Country" required/>
-                <input type="file" placeholder="Picture">
+                <input type="mail" name="mail" id="mail" placeholder="Email" required/>
+                <input type="geslo" name="geslo" id="geslo" placeholder="Password" required/>
+                <input type="number" name="vloga" id="vloga" placeholder="Vloga" required/>
+                <input type="dropdown" placeholder="Country" name="TK_drzava" required/>
+                <input type="file" name="slika" placeholder="Picture">
                 
-                <button>Sign Up</button>
+                <button input type="submit">Sign Up</button>
             </form>
         </div>
         <div class="form-container sign-in">

@@ -72,6 +72,35 @@
 
 
     <h1>Welcome to Quotify.</h1>
+    <?php
+
+//dostop do zapisov knjig
+$stmt = $pdo->query("SELECT * FROM kategorija");
+$stmt->setFetchMode(PDO::FETCH_ASSOC); // rezultat naj bo asociativno polje ()
+
+
+if($stmt->rowCount() > 0) //izpisemo naslov samo v primeru, ko imamo rezultate
+  print('<h2> Categories </h2>');
+  
+//izpis podatkov iz baze
+ while ($row = $stmt->fetch()) 
+ {
+  ?>
+  
+  <div class="card mb-2 px-3 pt-2 pb-2">
+  <table class="table table-borderless table-striped table-sm mb-0">
+    <tr><th> </th>		<td><?php echo $row['vrsta']; ?></td></tr> 
+  
+  
+  
+    </table>
+    </div>
+
+  <?php
+ }
+
+
+?>
     <!-- 
 ============================================================
 =                                                          =
@@ -109,6 +138,8 @@
         </div>
     </footer>
     <script src="js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 </body>
 </html>
 

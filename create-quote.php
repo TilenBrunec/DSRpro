@@ -71,10 +71,41 @@
 ============================================================
 =                                                          =
 =                        CREATE QUOTE                      =
-=                                                          =
+=                         Naredi potem in vrrasaj          =
 ============================================================
 -->
 
+<?php
+
+		//preverimo, ce je uporabnik vnesel vse podatke v formo
+		if (isset($_POST['besedilo']) && isset($_POST['datum_quote']) && isset($_POST['TK_uporabnik']) 
+			&& isset($_POST['TK_avtor']))
+		{
+			
+			//pridobivanje podatkov iz obrazca in shranjevanje v spremelnjivke
+			$avtor = $_POST['besedilo'];
+			$datum_quote = $_POST['datum_quote'];
+			$TK_uporabnik = $_POST['TK_uporabnik'];
+			$TK_avtor = $_POST['TK_avtor'];
+			
+				
+			// pripravimo SQL izraz - imenovani vsebniki namesto ? in implicitnega vnosa
+			//prepare je začetek prepared statementa. 
+			$stmt = $db->prepare("INSERT INTO knjige(avtor, datum_quote, TK_uporabnik, TK_avtor) 
+			VALUES (:avtor, :datum_quote, :TK_uporabnik, :TK_avtor)");
+			
+			// vežemo parametre
+			$stmt->bindParam(':avtor', $avtor);
+			$stmt->bindParam(':datum_quote', $datum_quote);
+			$stmt->bindParam(':TK_uporabnik', $TK_uporabnik);
+			$stmt->bindParam(':TK_avtor', $TK_avtor);
+			
+			
+			$stmt->execute();
+		}
+
+		
+		?>
 
 
 
@@ -85,17 +116,17 @@
     <div class="title-create">Create Your Quote</div>
     <div class="content-create">
       <!-- Registration form -->
-      <form action="#">
+      <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
         <div class="user-details-create">
           <!-- Input for Category -->
           <div class="input-box-create">
             <span class="details-create">Category</span>
-            <input type="text" placeholder="Enter Category" required>
+            <input type="text" placeholder="Enter Category" name="category" required>
           </div>
           <!-- Input for qupti -->
           <div class="input-box-create">
             <span class="details-create">Quote</span>
-            <input type="text" placeholder="Enter your quote" required>
+            <input type="text" placeholder="Enter your quote" name="besedilo" required>
           </div>
           <!-- Input for Date -->
           <div class="input-box-create">
