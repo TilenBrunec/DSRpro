@@ -83,13 +83,13 @@
 
 
 //preverimo, ce je uporabnik vnesel vse podatke v formo
-if (isset($_POST['upo_ime']) && isset($_POST['vloga']) && isset($_POST['mail']) 
+if (isset($_POST['upo_ime']) && isset($_POST['mail']) 
   && isset($_POST['geslo']) && isset($_POST['slika']) && isset($_POST['TK_drzava']))
 {
   
   //pridobivanje podatkov iz obrazca in shranjevanje v spremelnjivke
   $upo_ime = $_POST['upo_ime'];
-  $vloga = $_POST['vloga'];
+  $vloga = 0;
   $mail = $_POST['mail'];
   $geslo = $_POST['geslo'];
   $slika = $_POST['slika'];
@@ -128,7 +128,6 @@ if (isset($_POST['upo_ime']) && isset($_POST['vloga']) && isset($_POST['mail'])
                 <input type="text" name="upo_ime" id="upo_ime" placeholder="Name" required/>
                 <input type="mail" name="mail" id="mail" placeholder="Email" required/>
                 <input type="geslo" name="geslo" id="geslo" placeholder="Password" required/>
-                <input type="number" name="vloga" id="vloga" placeholder="Vloga" required/>
                 <input type="dropdown" placeholder="Country" name="TK_drzava" required/>
                 <input type="file" name="slika" placeholder="Picture">
                 

@@ -9,6 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/kategorije.css">  
     <title>Quotify</title>
 </head>
 <body>
@@ -68,33 +69,27 @@
     </div>
 
 
-
-
-
-    <h1>Welcome to Quotify.</h1>
+<div class="naslov-kat">Categories</div>
     <?php
-
 //dostop do zapisov knjig
 $stmt = $pdo->query("SELECT * FROM kategorija");
 $stmt->setFetchMode(PDO::FETCH_ASSOC); // rezultat naj bo asociativno polje ()
 
-
-if($stmt->rowCount() > 0) //izpisemo naslov samo v primeru, ko imamo rezultate
-  print('<h2> Categories </h2>');
-  
 //izpis podatkov iz baze
  while ($row = $stmt->fetch()) 
  {
   ?>
-  
-  <div class="card mb-2 px-3 pt-2 pb-2">
-  <table class="table table-borderless table-striped table-sm mb-0">
-    <tr><th> </th>		<td><?php echo $row['vrsta']; ?></td></tr> 
-  
-  
-  
-    </table>
-    </div>
+ <div class="card">
+  <div class="card-header">
+    <?php echo $row['vrsta']; ?>
+  </div>
+  <div class="card-body">
+
+    <p class="card-text">Quotify is a dynamic web application designed for discovering, managing, and sharing inspirational quotes</p>
+    <a href="#" class="btn btn-primary">View Quotes</a>
+  </div>
+</div>
+
 
   <?php
  }
