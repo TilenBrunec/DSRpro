@@ -70,27 +70,27 @@
 }
 
 .naslov-kat {
-    font-size: 6.5rem; /* Default font size for large screens */
-    font-weight: bold;
-    text-align: center; /* Centers the text */
-    color: #333; /* Base text color */
-    margin-bottom: 20px;
-    background: linear-gradient(to right, #b927fc 0%, #2c64fc 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    padding: 40px;
+  font-size: 6.5rem; /* Default font size for large screens */
+  font-weight: bold;
+  text-align: center; /* Centers the text */
+  color: #333; /* Base text color */
+  margin-bottom: 20px;
+  background: linear-gradient(to right, #b927fc 0%, #2c64fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 40px;
+}
+
+/* Responsive font size for medium screens */
+@media (max-width: 768px) {
+  .naslov-kat {
+    font-size: 4rem;
   }
-  
-  /* Responsive font size for medium screens */
-  @media (max-width: 768px) {
-    .naslov-kat {
-      font-size: 4rem;
-    }
+}
+
+/* Responsive font size for small screens */
+@media (max-width: 576px) {
+  .naslov-kat {
+    font-size: 2.5rem;
   }
-  
-  /* Responsive font size for small screens */
-  @media (max-width: 576px) {
-    .naslov-kat {
-      font-size: 2.5rem;
-    }
-  }
+}

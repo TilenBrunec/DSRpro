@@ -1,107 +1,104 @@
 .create-section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    height: auto;
-    z-index: 1;
-    position: relative;
-    width: 100%;
-    padding: 40px 0 80px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: auto;
+  z-index: 1;
+  position: relative;
+  width: 100%;
+  padding: 40px 0 80px 0;
 }
 
 .container-create {
-    max-width: 700px;
-    width: 100%;
-    background-color: #fff;
-    padding: 25px 30px;
-    border-radius: 15px;
-    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.15);
+  max-width: 700px;
+  width: 100%;
+  background-color: #fff;
+  padding: 25px 30px;
+  border-radius: 15px;
+  box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.15);
+}
+.container-create .title-create {
+  font-size: 45px;
+  font-weight: 500;
+  position: relative;
+}
+.container-create .title-create::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 90%;
+  border-radius: 5px;
+  background: linear-gradient(to right, #b927fc 0%, #2c64fc 100%);
+}
+.content-create form .user-details-create {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 20px 0 12px 0;
+}
+form .user-details-create .input-box-create {
+  margin-bottom: 15px;
+  width: 96%;
+}
+form .input-box-create span.details-create {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.user-details-create .input-box-create input {
+  height: 45px;
+  width: 100%;
+  outline: none;
+  font-size: 16px;
+  border-radius: 5px;
+  padding-left: 15px;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+  transition: all 0.3s ease;
+}
+.user-details-create .input-box-create input:focus,
+.user-details-create .input-box-create input:valid {
+  border-color: linear-gradient(to right, #b927fc 0%, #2c64fc 100%);
+}
+form .button {
+  height: 45px;
+  margin: 35px 0;
+}
+form .button input {
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: linear-gradient(to right, #b927fc 0%, #2c64fc 100%);
+}
+form .button input:hover {
+  transform: scale(0.99);
+  cursor: pointer;
+}
+/* Responsive media query code for mobile devices */
+@media (max-width: 584px) {
+  .container-create {
+    max-width: 100%;
   }
-  .container-create .title-create {
-    font-size: 45px;
-    font-weight: 500;
-    position: relative;
-  }
-  .container-create .title-create::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 3px;
-    width: 90%;
-    border-radius: 5px;
-    background: linear-gradient(to right, #b927fc 0%, #2c64fc 100%);;
-  }
-  .content-create form .user-details-create {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin: 20px 0 12px 0;
-  }
-  form .user-details-create .input-box-create {
+  form .user-details .input-box {
     margin-bottom: 15px;
-    width: 96%;
-  }
-  form .input-box-create span.details-create {
-    display: block;
-    font-weight: 500;
-    margin-bottom: 5px;
-  }
-  .user-details-create .input-box-create input {
-    height: 45px;
     width: 100%;
-    outline: none;
-    font-size: 16px;
-    border-radius: 5px;
-    padding-left: 15px;
-    border: 1px solid #ccc;
-    border-bottom-width: 2px;
-    transition: all 0.3s ease;
   }
-  .user-details-create .input-box-create input:focus,
-  .user-details-create .input-box-create input:valid {
-    border-color: linear-gradient(to right, #b927fc 0%, #2c64fc 100%);;
-  }
-  form .button {
-    height: 45px;
-    margin: 35px 0
-  }
-  form .button input {
-    height: 100%;
+  form .category-create {
     width: 100%;
-    border-radius: 5px;
-    border: none;
-    color: #fff;
-    font-size: 18px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    background: linear-gradient(to right, #b927fc 0%, #2c64fc 100%);
   }
-  form .button input:hover {
-     transform: scale(0.99);
-     cursor: pointer;
-     
-     }    
-  /* Responsive media query code for mobile devices */
-  @media(max-width: 584px) {
-    .container-create {
-      max-width: 100%;
-    }
-    form .user-details .input-box {
-      margin-bottom: 15px;
-      width: 100%;
-    }
-    form .category-create {
-      width: 100%;
-    }
-   
-    .user-details-create::-webkit-scrollbar {
-      width: 5px;
-    }
+
+  .user-details-create::-webkit-scrollbar {
+    width: 5px;
   }
-  /* Responsive media query code for mobile devices */
-  
-  
+}
+

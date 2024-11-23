@@ -12,6 +12,10 @@
     <link rel="stylesheet" href="css/create-quote.css">
     <title>Quotify</title>
 </head>
+<style>
+
+
+</style>
 <body>
   <!-- 
 ============================================================
@@ -75,6 +79,8 @@
 ============================================================
 -->
 
+
+
 <?php
 
 		//preverimo, ce je uporabnik vnesel vse podatke v formo
@@ -117,11 +123,25 @@
     <div class="content-create">
       <!-- Registration form -->
       <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
+
         <div class="user-details-create">
           <!-- Input for Category -->
-          <div class="input-box-create">
-            <span class="details-create">Category</span>
-            <input type="text" placeholder="Enter Category" name="category" required>
+          <div class="checkbox-create">
+            <span class="checkbox-create-detail" style="font-size: 16px; font-weight: 500;">Categories</span>
+              <br>
+                <?php
+                    $stmt = $pdo->query("SELECT * FROM kategorija");
+                    $stmt->setFetchMode(PDO::FETCH_ASSOC); // rezultat naj bo asociativno polje ()
+
+                      while ($row = $stmt->fetch()) {        
+                        ?>
+                              <div class="row-check" style="font-size: 16px; padding-left: 30px; ">
+                                <input type="checkbox" > <?php echo $row['vrsta']; ?>
+                                <br>
+                              </div>
+                <?php
+                  }
+                  ?>
           </div>
           <!-- Input for qupti -->
           <div class="input-box-create">
@@ -133,7 +153,7 @@
             <span class="details-create">Date</span>
             <input type="date"  required>
           </div>
-          <!-- Input for Phone Number -->
+          <!-- Input for autor-->
           <div class="input-box-create">
             <span class="details-create">Author</span>
             <input type="text" placeholder="Enter an Author" required>
