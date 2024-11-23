@@ -12,10 +12,6 @@
     <link rel="stylesheet" href="css/create-quote.css">
     <title>Quotify</title>
 </head>
-<style>
-
-
-</style>
 <body>
   <!-- 
 ============================================================
@@ -127,7 +123,7 @@
         <div class="user-details-create">
           <!-- Input for Category -->
           <div class="checkbox-create">
-            <span class="checkbox-create-detail" style="font-size: 16px; font-weight: 500;">Categories</span>
+            <span class="checkbox-create-detail" style="font-size: 16px; font-weight: 600;">Category</span>
               <br>
                 <?php
                     $stmt = $pdo->query("SELECT * FROM kategorija");
@@ -135,9 +131,10 @@
 
                       while ($row = $stmt->fetch()) {        
                         ?>
-                              <div class="row-check" style="font-size: 16px; padding-left: 30px; ">
+                        <hr>
+                              <div class="row-check" style="font-size: 16px;  ">
                                 <input type="checkbox" > <?php echo $row['vrsta']; ?>
-                                <br>
+                                <hr >
                               </div>
                 <?php
                   }

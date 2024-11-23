@@ -1,5 +1,5 @@
 <?php
-    #session_start();
+    session_start();
     include('pdo-connection.php');
 ?>
 
@@ -15,6 +15,18 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Quotify</title>
 </head>
+<style>
+select {
+  background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+}
+</style>
 <body>
 <!-- 
 ============================================================
@@ -75,7 +87,7 @@
 <!-- 
 ============================================================
 =                                                          =
-=                         FORM                             =
+=                         sing up                             =
 =                                                          =
 ============================================================
 -->
@@ -116,23 +128,48 @@ if (isset($_POST['upo_ime']) && isset($_POST['mail'])
 <div class="login-register">
 <div class="container" id="container">
         <div class="form-container sign-up">
-            <form  action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">>
-                <h1>Create Account</h1>
-                <div class="social-icons">
-                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-                </div>
-                <span>Become our newest member</span>
-                <input type="text" name="upo_ime" id="upo_ime" placeholder="Name" required/>
-                <input type="mail" name="mail" id="mail" placeholder="Email" required/>
-                <input type="geslo" name="geslo" id="geslo" placeholder="Password" required/>
-                <input type="dropdown" placeholder="Country" name="TK_drzava" required/>
-                <input type="file" name="slika" placeholder="Picture">
-                
-                <button input type="submit">Sign Up</button>
-            </form>
+        <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post" enctype="multipart/form-data">
+    <h1>Create Account</h1>
+    <div class="social-icons">
+        <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+        <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+        <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+    </div>
+    <span>Become our newest member</span>
+    <input type="text" name="upo_ime" id="upo_ime" placeholder="Name" required/>
+    <input type="email" name="mail" id="mail" placeholder="Email" required/>
+    <input type="password" name="geslo" id="geslo" placeholder="Password" required/>
+
+    <!-- Dropdown for countries  
+     <input type="dropdown" placeholder="Country" name="TK_drzava" required/>
+    -->
+    <label for="country"></label>
+    <select name="TK_drzava" id="country" required>
+        <option value="" disabled selected>Select Country</option>
+        <?php
+        $vseDrzave = $pdo->query("SELECT * FROM drzava");
+        $vseDrzave->setFetchMode(PDO::FETCH_ASSOC);
+        while ($row = $vseDrzave->fetch()) {
+            echo '<option value="' . $row['id_drzava'] . '">' . $row['naziv'] . '</option>';
+        }
+        ?>
+    </select>
+    
+    <input type="file" name="slika" placeholder="Picture">
+
+    <button type="submit">Sign Up</button>
+
+
+    <!-- 
+============================================================
+=                                                          =
+=                         lop in                           =
+=                                                          =
+============================================================
+-->
+<?php?>
+</form action="login-register.php" method="POST">
         </div>
         <div class="form-container sign-in">
             <form>
@@ -144,8 +181,8 @@ if (isset($_POST['upo_ime']) && isset($_POST['mail'])
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
                 <span>Log in with your account</span>
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
+                <input type="email" name="mail" placeholder="Email" required>
+                <input type="password" name="geslo" placeholder="Password" required>>
                 <a href="#">Forget Your Password?</a>
                 <button>Sign In</button>
             </form>
