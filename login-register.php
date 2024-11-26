@@ -92,11 +92,11 @@ select {
 ============================================================
 -->
 <?php
-
+ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);
 
 //preverimo, ce je uporabnik vnesel vse podatke v formo
 if (isset($_POST['upo_ime']) && isset($_POST['mail']) 
-  && isset($_POST['geslo']) && isset($_POST['slika']) && isset($_POST['TK_drzava']))
+  && isset($_POST['geslo']) && isset($_POST['TK_drzava']))
 {
   
   //pridobivanje podatkov iz obrazca in shranjevanje v spremelnjivke
@@ -104,7 +104,7 @@ if (isset($_POST['upo_ime']) && isset($_POST['mail'])
   $vloga = 0;
   $mail = $_POST['mail'];
   $geslo = $_POST['geslo'];
-  $slika = $_POST['slika'];
+  $slika =isset($_POST['slika'])  ? $_POST['slika'] : null;
   $TK_drzava = $_POST['TK_drzava'];
     
   // pripravimo SQL izraz - imenovani vsebniki namesto ? in implicitnega vnosa
@@ -119,6 +119,7 @@ if (isset($_POST['upo_ime']) && isset($_POST['mail'])
   $stmt->bindParam(':geslo', $geslo);
   $stmt->bindParam(':slika', $slika);
   $stmt->bindParam(':TK_drzava', $TK_drzava);
+
   
   $stmt->execute();
 }
@@ -168,7 +169,9 @@ if (isset($_POST['upo_ime']) && isset($_POST['mail'])
 =                                                          =
 ============================================================
 -->
-<?php?>
+<?php
+
+?>
 </form action="login-register.php" method="POST">
         </div>
         <div class="form-container sign-in">
@@ -207,7 +210,7 @@ if (isset($_POST['upo_ime']) && isset($_POST['mail'])
 <!-- 
 ============================================================
 =                                                          =
-=                         FOOTER                            =
+=                         FOOTER                           =
 =                                                          =
 ============================================================
 -->
