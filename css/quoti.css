@@ -1,0 +1,35 @@
+.quote-container {
+    margin: 40px;
+    padding: 20px 20px 0 20px; /* Top: 0px, Right: 20px, Bottom: 0, Left: 20px */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+}
+
+/* Date styling */
+.quote-date {
+    font-size: 0.9em;
+    color: black;
+    margin-bottom: 10px;
+    text-align: right;
+}
+
+/* Quote text styling */
+.quote-text {
+    font-size: 1.8em;
+    font-style: italic;
+    color: #555;
+    margin: 10px 0;
+    padding-left: 30px;
+}
+
+/* Author and user styling */
+.quote-user,
+.quote-author {
+    font-size: 0.95em;
+    margin-top: 5px;
+    color: #444;
+}
+

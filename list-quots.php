@@ -1,5 +1,5 @@
 <?php
-    #session_start();
+    session_start();
     include('pdo-connection.php');
 ?>
 
@@ -9,7 +9,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/quoti.css">
+    
     <title>Quotify</title>
+    
 </head>
 <body>
   <!-- 
@@ -73,7 +76,48 @@
 
 
 
-    <h1>Welcome to Quotify.</h1>
+   
+
+
+    <?php
+//dostop do zapisov knjig
+$stmt = $pdo->query("SELECT * FROM quote , uporabnik, avtor  
+WHERE quote.TK_uporabnik = uporabnik.id_uporabnik 
+    AND quote.TK_avtor = avtor.id_avtor 
+    ");
+$stmt->setFetchMode(PDO::FETCH_ASSOC); // rezultat naj bo asociativno polje ()
+
+//kategorija, qoute_kategorija
+// AND qoute_kategorija.TK_quote = quote.id_quote 
+//AND qoute_kategorija.TK_kategorija = kategorija.id_kategorija
+
+//izpis podatkov iz baze
+ while ($row = $stmt->fetch()) 
+ {
+  ?>
+  <div class="quote-container">
+        <div class = "delete-quote"> <img src="picture/trash-can.png" alt=""> </div>
+        <div class="quote-text">
+            <?php echo $row['besedilo']; ?>
+        </div>
+        <div class="quote-author">
+            Author: <span><?php echo $row['imeInPriimek']; ?></span>
+        </div>
+        <div class="quote-user">
+            Added by: <?php echo $row['upo_ime']; ?>
+        </div>
+        
+        <div class="quote-date">
+            <?php echo $row['datum_quote']; ?>
+        </div>
+    </div>
+  <?php
+ }
+
+
+?>
+
+
     <!-- 
 ============================================================
 =                                                          =
