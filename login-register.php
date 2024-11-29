@@ -171,8 +171,19 @@ if (isset($_POST['upo_ime']) && isset($_POST['mail'])
 -->
 <?php
 
+if(@$_GET['odjava'] == 1)
+	{
+	unset($_SESSION);
+	session_destroy();
+
+	}
+
 ?>
-</form action="login-register.php" method="POST">
+<?php
+
+if(!@$_SESSION['sesionid']) {
+?>
+</form action="login-DB.php" method="POST">
         </div>
         <div class="form-container sign-in">
             <form>
@@ -185,10 +196,28 @@ if (isset($_POST['upo_ime']) && isset($_POST['mail'])
                 </div>
                 <span>Log in with your account</span>
                 <input type="email" name="mail" placeholder="Email" required>
-                <input type="password" name="geslo" placeholder="Password" required>>
+                <input type="password" name="geslo" placeholder="Password" required>
                 <a href="#">Forget Your Password?</a>
                 <button>Sign In</button>
             </form>
+
+            <?php
+}
+?>
+
+<?php
+ ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);
+if(@$_SESSION['sid']) {
+?>
+	Ste prijavljeni <?php echo $_SESSION['mail']  ?>! <br /><br />
+	<!--<br/>vaše uporabniško ime: <b>< ?php// echo $_SESSION['ime'] ?></b><br/>-->
+	<br/>vaš sid: <b><?php echo $_SESSION['sesionid'] ?></b><br/>
+	<a href="login.php?odjava=1" class="btn btn-warning"> Odjavi </a>
+<?php
+}
+
+
+?>
         </div>
         <div class="toggle-container">
             <div class="toggle">
