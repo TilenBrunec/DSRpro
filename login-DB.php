@@ -7,7 +7,7 @@ if (!isset($_SESSION['upo_ime'])) {
 	if (isset($_POST['mail']) && isset($_POST['geslo'])) { // v prijavnem obrazcu smo vpisali najmanj uporabnisko ime
 		
 
-		$stmt = $db->prepare("SELECT upo_ime FROM uporabnik WHERE mail = ? and geslo = ?"); // ali uporabnisko ime in geslo obstaja v bazi
+		$stmt = $db->prepare("SELECT upo_ime , id_uporabnik FROM uporabnik WHERE mail = ? and geslo = ?"); // ali uporabnisko ime in geslo obstaja v bazi
 		$stmt->bind_param('sesostorage', $_POST['mail'], $_POST['geslo']); 
 		$stmt->execute();
 		$stmt->store_result();
@@ -23,6 +23,7 @@ if (!isset($_SESSION['upo_ime'])) {
 			$_SESSION['sesionid'] = session_id();
 			// preusmeritev
 			//echo("prijava je uspela");
+			$_SESSION['userid'] = $_POST['mail'];
 			header("Location: index.php");
 		}
 		else {

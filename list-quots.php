@@ -81,13 +81,11 @@
 
     <?php
 //dostop do zapisov knjig
-$stmt = $pdo->query("SELECT * FROM quote , uporabnik, avtor  
-WHERE quote.TK_uporabnik = uporabnik.id_uporabnik 
-    AND quote.TK_avtor = avtor.id_avtor 
+$stmt = $pdo->query("SELECT quote.*, kategorija.*, avtor.* ,uporabnik.*FROM quote INNER JOIN quote_kategorija ON quote_kategorija.TK_quote = quote.id_quote INNER JOIN kategorija ON quote_kategorija.TK_kategorija = kategorija.id_kategorija INNER JOIN avtor ON avtor.id_avtor = quote.TK_avtor INNER JOIN uporabnik on uporabnik.id_uporabnik = quote.TK_uporabnik;
     ");
 $stmt->setFetchMode(PDO::FETCH_ASSOC); // rezultat naj bo asociativno polje ()
 
-//kategorija, qoute_kategorija
+
 // AND qoute_kategorija.TK_quote = quote.id_quote 
 //AND qoute_kategorija.TK_kategorija = kategorija.id_kategorija
 
@@ -99,6 +97,9 @@ $stmt->setFetchMode(PDO::FETCH_ASSOC); // rezultat naj bo asociativno polje ()
         <div class = "delete-quote"> <img src="picture/trash-can.png" alt=""> </div>
         <div class="quote-text">
             <?php echo $row['besedilo']; ?>
+        </div>
+        <div class="quote-author">
+            Author: <span><?php echo $row['vrsta']; ?></span>
         </div>
         <div class="quote-author">
             Author: <span><?php echo $row['imeInPriimek']; ?></span>
