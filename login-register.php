@@ -1,7 +1,13 @@
 <?php
     session_start();
     include('pdo-connection.php');
-?>
+    if (isset($_GET['odjava']) && $_GET['odjava'] == 1) {
+      session_destroy();
+       session_unset();
+      header("Location: login-register.php"); // Preusmeritev na stran za prijavo
+      exit;
+  }
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="css/login-register.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/logout.css">
     <title>Quotify</title>
 </head>
 <style>
@@ -53,9 +60,15 @@ select {
         <li>
           <a href="create-quote.php">Create one</a>
         </li>
-        <li>
-          <a href="login-register.php">Login</a>
-        </li>
+    <?php if (isset($_SESSION['sesionid'])) { ?>
+      <li class="odjava">
+        <a href="?odjava=1">Log out</a>
+      </li>
+    <?php } else { ?>
+      <li class="odjava">
+        <a href="login-register.php">Log in</a>
+      </li>
+    <?php } ?>
       </ul>
       <div class="hamburger">
         <span class="line"></span>
@@ -77,9 +90,15 @@ select {
         <li>
           <a href="create-quote.php">Create one</a>
         </li>
-        <li>
-          <a href="login-register.php">Login</a>
-        </li>
+        <?php if (isset($_SESSION['sesionid'])) { ?>
+      <li class="odjava">
+        <a href="?odjava=1">Logout</a>
+      </li>
+    <?php } else { ?>
+      <li>
+        <a href="login-register.php">Login</a>
+      </li>
+    <?php } ?>
       </ul>
     </div>
 
@@ -161,7 +180,9 @@ if (isset($_POST['upo_ime']) && isset($_POST['mail'])
 
     <button type="submit">Sign Up</button>
 
-
+</form >
+        </div>
+        <div class="form-container sign-in">
     <!-- 
 ============================================================
 =                                                          =
@@ -169,24 +190,12 @@ if (isset($_POST['upo_ime']) && isset($_POST['mail'])
 =                                                          =
 ============================================================
 -->
-<?php
 
-if(@$_GET['odjava'] == 1)
-	{
-	unset($_SESSION);
-	session_destroy();
-
-	}
-
-?>
 <?php
 
 if(!@$_SESSION['sesionid']) {
 ?>
-</form action="login-DB.php" method="POST">
-        </div>
-        <div class="form-container sign-in">
-            <form>
+            <form action="login-DB.php" method="POST">
                 <h1>Sign In</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -205,19 +214,10 @@ if(!@$_SESSION['sesionid']) {
 }
 ?>
 
-<?php
- ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);
-if(@$_SESSION['sid']) {
-?>
-	Ste prijavljeni <?php echo $_SESSION['mail']  ?>! <br /><br />
-	<!--<br/>vaše uporabniško ime: <b>< ?php// echo $_SESSION['ime'] ?></b><br/>-->
-	<br/>vaš sid: <b><?php echo $_SESSION['sesionid'] ?></b><br/>
-	<a href="login.php?odjava=1" class="btn btn-warning"> Odjavi </a>
-<?php
-}
 
 
-?>
+
+
         </div>
         <div class="toggle-container">
             <div class="toggle">
@@ -235,6 +235,7 @@ if(@$_SESSION['sid']) {
         </div>
     </div>
 </div>
+
 
 <!-- 
 ============================================================

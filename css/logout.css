@@ -1,0 +1,18 @@
+.odjava {
+    list-style: none;
+    margin-left: 22px;
+    padding: 0;
+  }
+  
+  .odjava a {
+    display: inline-block;
+    text-decoration: none;
+    background: linear-gradient(to right, #b927fc 0%, #2c64fc 100%);
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .odjava a:hover {
+    background: linear-gradient(to right, #9b1bc7 0%, #1d51d0 100%); 
+    transform: scale(1.05); 
+  }

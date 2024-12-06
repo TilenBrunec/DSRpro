@@ -1,6 +1,12 @@
 <?php
-    #session_start();
+    session_start();
     include('pdo-connection.php');
+    if (isset($_GET['odjava']) && $_GET['odjava'] == 1) {
+      session_unset();
+      session_destroy();
+      header("Location: login-register.php"); 
+      exit;
+  }
 ?>
 
 <!DOCTYPE html>
@@ -9,9 +15,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/logout.css">
     <title>Quotify</title>
 </head>
 <body>
+  
 <nav>
       <div class="logo">
         <img src="picture/Logo64x64.png" alt="logo" />
@@ -31,9 +39,15 @@
         <li>
           <a href="create-quote.php">Create one</a>
         </li>
-        <li>
-          <a href="login-register.php">Login</a>
-        </li>
+        <?php if (isset($_SESSION['sesionid'])) { ?>
+      <li class="odjava">
+        <a href="?odjava=1">Log out</a>
+      </li>
+    <?php } else { ?>
+      <li class="odjava">
+        <a href="login-register.php">Log in</a>
+      </li>
+    <?php } ?>
       </ul>
       <div class="hamburger">
         <span class="line"></span>

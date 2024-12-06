@@ -1,6 +1,12 @@
 <?php
   session_start();
     include('pdo-connection.php');
+    if (isset($_GET['odjava']) && $_GET['odjava'] == 1) {
+      session_unset();
+      session_destroy();
+      header("Location: login-register.php"); // Preusmeritev na stran za prijavo
+      exit;
+  }
 ?>
 
 <!DOCTYPE html>
@@ -10,6 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/kategorije.css">  
+    <link rel="stylesheet" href="css/logout.css">
     <title>Quotify</title>
 </head>
 <body>
@@ -38,9 +45,15 @@
         <li>
           <a href="create-quote.php">Create one</a>
         </li>
-        <li>
-          <a href="login-register.php">Login</a>
-        </li>
+        <?php if (isset($_SESSION['sesionid'])) { ?>
+      <li class="odjava">
+        <a href="?odjava=1">Log out</a>
+      </li>
+    <?php } else { ?>
+      <li class="odjava">
+        <a href="login-register.php">Log in</a>
+      </li>
+    <?php } ?>
       </ul>
       <div class="hamburger">
         <span class="line"></span>
@@ -62,9 +75,15 @@
         <li>
           <a href="create-quote.php">Create one</a>
         </li>
-        <li>
-          <a href="login-register.php">Login</a>
-        </li>
+        <?php if (isset($_SESSION['sesionid'])) { ?>
+      <li class="odjava">
+        <a href="?odjava=1">Log out</a>
+      </li>
+    <?php } else { ?>
+      <li class="odjava">
+        <a href="login-register.php">Log in</a>
+      </li>
+    <?php } ?>
       </ul>
     </div>
 
