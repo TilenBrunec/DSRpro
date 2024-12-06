@@ -1,0 +1,68 @@
+/* Container for each quote */
+.quote-container {
+  margin: 40px;
+  padding: 10px 20px 0 20px; /* Top: 0px, Right: 20px, Bottom: 0, Left: 20px */
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative; /* Make this container the reference for positioning delete icon */
+}
+
+/* Delete button positioning */
+.delete-quote {
+  cursor: pointer;
+  position: absolute; /* Position the icon absolutely */
+  top: 20px; /* Adjust top position */
+  right: 20px; /* Position it 10px from the right side */
+  width: 20px;
+  height: 20px;
+}
+
+/* Image style for the delete icon */
+.delete-quote img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.2s ease;
+}
+
+/* Hover effect for delete icon */
+.delete-quote:hover img {
+  transform: scale(1.2); /* Slightly increase the size on hover */
+}
+
+/* Date styling */
+.quote-date {
+  font-size: 0.9em;
+  color: black;
+  margin-bottom: 10px;
+  text-align: right;
+}
+
+/* Quote text styling */
+.quote-text {
+  font-size: 1.8em;
+  font-style: italic;
+  color: #555;
+  margin: 10px 0;
+  padding-left: 30px;
+}
+
+/* Author and user styling */
+.quote-user,
+.quote-author .quote-category {
+  font-size: 0.95em;
+  margin-top: 5px;
+  color: #444;
+}
+.naslov-quote {
+  font-size: 6.5rem; /* Default font size for large screens */
+  font-weight: bold;
+  text-align: center; /* Centers the text */
+  color: #333; /* Base text color */
+  margin-bottom: 20px;
+  background: linear-gradient(to right, #b927fc 0%, #2c64fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 20px;
+}

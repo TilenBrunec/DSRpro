@@ -15,12 +15,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/quoti.css">
     <link rel="stylesheet" href="css/logout.css">
+    <link rel="stylesheet" href="css/quots.css">
     
     <title>Quotify</title>
     
 </head>
+<style>
+</style>
 <body>
   <!-- 
 ============================================================
@@ -95,7 +97,7 @@
 
 
 
-   
+    <div class="naslov-quote">Quotes</div>
 
 
     <?php
@@ -105,21 +107,20 @@ $stmt = $pdo->query("SELECT quote.*, kategorija.*, avtor.* ,uporabnik.*FROM quot
 $stmt->setFetchMode(PDO::FETCH_ASSOC); // rezultat naj bo asociativno polje ()
 
 
-// AND qoute_kategorija.TK_quote = quote.id_quote 
-//AND qoute_kategorija.TK_kategorija = kategorija.id_kategorija
-
 //izpis podatkov iz baze
  while ($row = $stmt->fetch()) 
  {
   ?>
   <div class="quote-container">
-        <div class = "delete-quote"> <img src="picture/trash-can.png" alt=""> </div>
+        <div class = "delete-quote"> <img src="picture/bin.png" alt=""> </div>
+
+        <div class="quote-category">
+            <span><?php echo $row['vrsta']; ?></span>
+        </div>
         <div class="quote-text">
             <?php echo $row['besedilo']; ?>
         </div>
-        <div class="quote-author">
-            Author: <span><?php echo $row['vrsta']; ?></span>
-        </div>
+        
         <div class="quote-author">
             Author: <span><?php echo $row['imeInPriimek']; ?></span>
         </div>
