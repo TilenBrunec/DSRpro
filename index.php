@@ -16,8 +16,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/logout.css">
+    <link rel="stylesheet" href="css/index.css">
     <title>Quotify</title>
 </head>
+<style>
+  
+</style>
 <body>
   
 <nav>
@@ -85,8 +89,17 @@
 
 
 
-
-    <h1>Welcome to Quotify.</h1>
+<div class="main">
+<div class="text"> 
+  <h2 class="welcomeH2">Welcome to Quotify</h2>
+  <p class="welcomeP">Your one-stop destination for inspiring, thought-provoking, and memorable quotes.
+     Whether you're here to discover wisdom, share your own words, or explore categories of curated thoughts,
+      Quotify is the perfect space for all quote enthusiasts.</p>
+</div>
+<div class="image"> <img src="picture/release.png" alt=""></div>
+</div>
+    
+    
 <!-- 
 ============================================================
 =                                                          =
@@ -124,6 +137,8 @@
         </div>
     </footer>
     <script src="js/script.js"></script>
+    
+
 </body>
 </html>
 
