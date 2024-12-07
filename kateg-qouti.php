@@ -1,6 +1,20 @@
 <?php
-    #session_start();
+    session_start();
     include('pdo-connection.php');
+    if (isset($_GET['odjava']) && $_GET['odjava'] == 1) {
+      session_unset();
+      session_destroy();
+      header("Location: login-register.php"); // Preusmeritev na stran za prijavo
+      exit;
+  }
+  $id_kategorija = isset($_GET['id']) ? intval($_GET['id']) : null;
+
+  if ($id_kategorija === null || $id_kategorija <= 0) {
+      echo "<h2>Error: Invalid or missing category ID.</h2>";
+      exit;
+  }
+  
+
 ?>
 
 <!DOCTYPE html>
@@ -9,6 +23,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/logout.css">
+    <link rel="stylesheet" href="css/quots.css">
     <title>Quotify</title>
 </head>
 <body>
@@ -37,9 +53,15 @@
         <li>
           <a href="create-quote.php">Create one</a>
         </li>
-        <li>
-          <a href="login-register.php">Login</a>
-        </li>
+        <?php if (isset($_SESSION['sesionid'])) { ?>
+      <li class="odjava">
+        <a href="?odjava=1">Log out</a>
+      </li>
+    <?php } else { ?>
+      <li class="odjava">
+        <a href="login-register.php">Log in</a>
+      </li>
+    <?php } ?>
       </ul>
       <div class="hamburger">
         <span class="line"></span>
@@ -61,17 +83,70 @@
         <li>
           <a href="create-quote.php">Create one</a>
         </li>
-        <li>
-          <a href="login-register.php">Login</a>
-        </li>
+        <?php if (isset($_SESSION['sesionid'])) { ?>
+      <li class="odjava">
+        <a href="?odjava=1">Log out</a>
+      </li>
+    <?php } else { ?>
+      <li class="odjava">
+        <a href="login-register.php">Log in</a>
+      </li>
+    <?php } ?>
       </ul>
     </div>
 
 
+<?php
+$stmtNaslov = $pdo->query("SELECT * FROM kategorija WHERE id_kategorija = $id_kategorija");
+$stmtNaslov->setFetchMode(PDO::FETCH_ASSOC); 
+
+?>
+
+<div class="naslov-quote"> <?php while ($row = $stmtNaslov->fetch()) { echo $row['vrsta']; } ?> </div>
+
+    
+
+<?php
+
+$stmt = $pdo->query("SELECT quote.*, kategorija.*, avtor.* ,uporabnik.*FROM quote INNER JOIN quote_kategorija ON quote_kategorija.TK_quote = quote.id_quote 
+INNER JOIN kategorija ON quote_kategorija.TK_kategorija = kategorija.id_kategorija INNER JOIN avtor ON avtor.id_avtor = quote.TK_avtor 
+INNER JOIN uporabnik on uporabnik.id_uporabnik = quote.TK_uporabnik  WHERE quote_kategorija.TK_kategorija = $id_kategorija 
+    ");
+$stmt->setFetchMode(PDO::FETCH_ASSOC); // rezultat naj bo asociativno polje ()
 
 
 
-    <h1>Welcome to Quotify.</h1>
+//izpis podatkov iz baze
+ while ($row = $stmt->fetch()) 
+ {
+  ?>
+  <div class="quote-container">
+        <div class = "delete-quote"> <img src="picture/bin.png" alt=""> </div>
+
+        <div class="quote-category">
+            <span><?php echo $row['vrsta']; ?></span>
+        </div>
+        <div class="quote-text">
+            <?php echo $row['besedilo']; ?>
+        </div>
+        
+        <div class="quote-author">
+            Author: <span><?php echo $row['imeInPriimek']; ?></span>
+        </div>
+        <div class="quote-user">
+            Added by: <?php echo $row['upo_ime']; ?>
+        </div>
+        
+        <div class="quote-date">
+            <?php echo $row['datum_quote']; ?>
+        </div>
+    </div>
+  <?php
+ }
+
+
+?>
+
     <!-- 
 ============================================================
 =                                                          =

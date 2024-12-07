@@ -105,7 +105,7 @@ $stmt->setFetchMode(PDO::FETCH_ASSOC); // rezultat naj bo asociativno polje ()
   <div class="card-body">
 
     <p class="card-text">Quotify is a dynamic web application designed for discovering, managing, and sharing inspirational quotes</p>
-    <a href="#" class="btn btn-primary">View Quotes</a>
+    <a href="kateg-qouti.php?id=<?php echo $row['id_kategorija']; ?>" class="btn btn-primary">View Quotes</a>
   </div>
 </div>
 
