@@ -47,7 +47,7 @@
     font-size: 1.2em;
   }
 }
-/* Responsive styles */
+
 @media screen and (max-width: 768px) {
   .text {
     width: 100%;
@@ -60,29 +60,29 @@
   }
 
   .welcomeH2 {
-    font-size: 2em; /* Smaller text on smaller screens */
+    font-size: 2em;
   }
 
   .welcomeP {
-    font-size: 1.1em; /* Smaller paragraph text */
+    font-size: 1.1em; 
   }
 }
 
 @media screen and (max-width: 480px) {
   .welcomeH2 {
-    font-size: 3em; /* Even smaller text on very small screens */
+    font-size: 3em; 
   }
 
   .welcomeP {
-    font-size: 1em; /* Adjust the paragraph size */
+    font-size: 1em; 
   }
 
   .main {
-    height: auto; /* Allow the container to adapt to content */
-    padding: 20px; /* Add some padding on mobile */
+    height: auto; 
+    padding: 20px; 
   }
 
   .image img {
-    width: 80%; /* Reduce image size on small screens */
+    width: 80%; 
   }
 }
