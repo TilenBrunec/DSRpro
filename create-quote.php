@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
     session_start();
     include('pdo-connection.php');
     if (isset($_GET['odjava']) && $_GET['odjava'] == 1) {
@@ -107,7 +111,7 @@ if ( isset($_POST['besedilo']) && isset($_POST['datum_quote']) && isset($_POST['
   $kategorija = $_POST['kategorija']; // Array of selected category IDs
 
   // dobim id uporabnika
-  $TK_uporabnik = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+  $TK_uporabnik = isset($_SESSION['userid']) ? $_SESSION['userid'] : null;
 
   if ($TK_uporabnik === null) {
     echo "User not logged in. Please log in first.";
@@ -127,8 +131,8 @@ try {
     $lastQuoteId = $pdo->lastInsertId();
 
     // za kategorija_quote
-    $stmtCategory = $pdo->prepare("INSERT INTO kategorija_quote (TK_quote, TK_kategorija) VALUES (:TK_quote, :TK_kategorija)");
     foreach ($kategorija as $categoryId) {
+      $stmtCategory = $pdo->prepare("INSERT INTO  `quote_kategorija` (TK_quote, TK_kategorija) VALUES (:TK_quote, :TK_kategorija)");
         $stmtCategory->bindParam(':TK_quote', $lastQuoteId);
         $stmtCategory->bindParam(':TK_kategorija', $categoryId);
         $stmtCategory->execute();
@@ -180,12 +184,12 @@ try {
           <!-- Input for Date -->
           <div class="input-box-create">
             <span class="details-create">Date</span>
-            <input type="date"  required>
+            <input type="date" name="datum_quote"  required>
           </div>
           <!-- Input for autor-->
           <div class="input-box-create">
             <span class="details-create">Author</span>
-            <input type="text" placeholder="Enter an Author"  required>
+            <input type="text" placeholder="Enter an Author" name="TK_avtor" required>
           </div>
         
         </div>
