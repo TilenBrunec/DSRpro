@@ -1,6 +1,24 @@
 <?php
     session_start();
     include('pdo-connection.php');
+
+    if (isset($_GET['delete_id'])) {
+      $quoteId = $_GET['delete_id'];
+  
+      
+      $stmt = $pdo->prepare("DELETE FROM quote_kategorija WHERE TK_quote = ?");
+      $stmt->execute([$quoteId]);
+  
+      $stmt = $pdo->prepare("DELETE FROM komentar WHERE TK_quote = ?");
+      $stmt->execute([$quoteId]);
+    
+      $stmt = $pdo->prepare("DELETE FROM quote WHERE id_quote = ?");
+      $stmt->execute([$quoteId]);
+  
+      header("Location: list-quots.php"); 
+      exit;
+  }
+
     if (isset($_GET['odjava']) && $_GET['odjava'] == 1) {
       session_unset();
       session_destroy();
@@ -113,9 +131,10 @@ $stmt->setFetchMode(PDO::FETCH_ASSOC); // rezultat naj bo asociativno polje ()
  while ($row = $stmt->fetch()) 
  {
   ?>
-  <div class="quote-container">
-        <div class = "delete-quote"> <img src="picture/bin.png" alt=""> </div>
-
+     <div class="quote-container">
+        <a href="?delete_id=<?php echo $row['id_quote']; ?>" class="delete-quote">
+            <img src="picture/bin.png" alt="Delete">
+        </a>
         <div class="quote-category">
             <span><?php echo $row['vrsta']; ?></span>
         </div>

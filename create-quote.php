@@ -138,12 +138,12 @@ try {
         $stmtCategory->execute();
     }
 
-    echo "Quote successfully added with categories.";
+    echo "<script>alert('Quote successfully added with categories.');</script>";
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
 }
 } else {
-  echo "napaka";
+ 
 }
 		?>
 
