@@ -21,6 +21,12 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/logout.css">
     <title>Quotify</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <script src="https://unpkg.com/scrollreveal"></script>
 </head>
 <style>
 select {
@@ -196,7 +202,7 @@ if (isset($_POST['upo_ime']) && isset($_POST['mail'])
 if(!@$_SESSION['sesionid']) {
 ?>
             <form action="login-DB.php" method="POST">
-                <h1>Sign In</h1>
+                <h1 class="title">Sign In</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
                     <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
@@ -204,10 +210,10 @@ if(!@$_SESSION['sesionid']) {
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
                 <span>Log in with your account</span>
-                <input type="email" name="mail" placeholder="Email" required>
-                <input type="password" name="geslo" placeholder="Password" required>
+                <input class="input" type="email" name="mail" placeholder="Email" required>
+                <input class="input" type="password" name="geslo" placeholder="Password" required>
                 <a href="#">Forget Your Password?</a>
-                <button>Sign In</button>
+                <button class="input">Sign In</button>
             </form>
 
             <?php
@@ -227,9 +233,9 @@ if(!@$_SESSION['sesionid']) {
                     <button class="hidden" id="login">Sign In</button>
                 </div>
                 <div class="toggle-panel toggle-right">
-                    <h1>Hello, Friend!</h1>
-                    <p>Register with your personal details to use all of site features</p>
-                    <button class="hidden" id="register">Sign Up</button>
+                    <h1 class="h1scroll">Hello, Friend!</h1>
+                    <p class="pscroll">Register with your personal details to use all of site features</p>
+                    <button class="buttonscroll" class="hidden" id="register">Sign Up</button>
                 </div>
             </div>
         </div>
@@ -276,6 +282,7 @@ if(!@$_SESSION['sesionid']) {
 
     <script src="js/login-register.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/scrolReveal.js"></script>
     
 </body>
 </html>

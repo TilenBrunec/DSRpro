@@ -18,6 +18,11 @@
     <link rel="stylesheet" href="css/logout.css">
     <link rel="stylesheet" href="css/index.css">
     <title>Quotify</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <script src="https://unpkg.com/scrollreveal"></script>
 </head>
 <style>
   
@@ -137,6 +142,7 @@
         </div>
     </footer>
     <script src="js/script.js"></script>
+    <script src="js/scrolReveal.js"></script>
     
 
 </body>

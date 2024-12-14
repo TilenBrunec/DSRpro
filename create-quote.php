@@ -22,6 +22,11 @@ error_reporting(E_ALL);
     <link rel="stylesheet" href="css/create-quote.css">
     <link rel="stylesheet" href="css/logout.css">
     <title>Quotify</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <script src="https://unpkg.com/scrollreveal"></script>
 </head>
 <body>
   <!-- 
@@ -240,6 +245,7 @@ try {
         </div>
     </footer>
     <script src="js/script.js"></script>
+    <script src="js/scrolReveal.js"></script>
 </body>
 </html>
 
