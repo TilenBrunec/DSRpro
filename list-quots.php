@@ -102,9 +102,9 @@
 
     <?php
 //dostop do zapisov knjig
-$stmt = $pdo->query("SELECT quote.*, kategorija.*, avtor.* ,uporabnik.*FROM quote INNER JOIN quote_kategorija ON
+$stmt = $pdo->query("SELECT quote.*, kategorija.* ,uporabnik.*FROM quote INNER JOIN quote_kategorija ON
  quote_kategorija.TK_quote = quote.id_quote INNER JOIN kategorija ON quote_kategorija.TK_kategorija = kategorija.id_kategorija
-  INNER JOIN avtor ON avtor.id_avtor = quote.TK_avtor INNER JOIN uporabnik on uporabnik.id_uporabnik = quote.TK_uporabnik;
+   INNER JOIN uporabnik on uporabnik.id_uporabnik = quote.TK_uporabnik;
     ");
 $stmt->setFetchMode(PDO::FETCH_ASSOC); // rezultat naj bo asociativno polje ()
 
@@ -124,7 +124,7 @@ $stmt->setFetchMode(PDO::FETCH_ASSOC); // rezultat naj bo asociativno polje ()
         </div>
         
         <div class="quote-author">
-            Author: <span><?php echo $row['imeInPriimek']; ?></span>
+            Author: <span><?php echo $row['avtorQuota']; ?></span>
         </div>
         <div class="quote-user">
             Added by: <?php echo $row['upo_ime']; ?>

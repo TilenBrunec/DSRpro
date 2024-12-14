@@ -102,12 +102,12 @@ error_reporting(E_ALL);
 
 <?php
 
-if ( isset($_POST['besedilo']) && isset($_POST['datum_quote']) && isset($_POST['TK_avtor']) && isset($_POST['kategorija']))  {
+if ( isset($_POST['besedilo']) && isset($_POST['datum_quote']) && isset($_POST['avtorQuota']) && isset($_POST['kategorija']))  {
 
   // Retrieve data from the form
   $besedilo = $_POST['besedilo'];
   $datum_quote = $_POST['datum_quote'];
-  $TK_avtor = $_POST['TK_avtor'];
+  $avtorQuota = $_POST['avtorQuota'];
   $kategorija = $_POST['kategorija']; // Array of selected category IDs
 
   // dobim id uporabnika
@@ -120,11 +120,11 @@ if ( isset($_POST['besedilo']) && isset($_POST['datum_quote']) && isset($_POST['
 
 try {
     // Insert the quote into the `quote` table
-    $stmt = $pdo->prepare("INSERT INTO quote (besedilo, datum_quote, TK_uporabnik, TK_avtor) VALUES (:besedilo, :datum_quote, :TK_uporabnik, :TK_avtor)");
+    $stmt = $pdo->prepare("INSERT INTO quote (besedilo, datum_quote, TK_uporabnik, avtorQuota) VALUES (:besedilo, :datum_quote, :TK_uporabnik, :avtorQuota)");
     $stmt->bindParam(':besedilo', $besedilo);
     $stmt->bindParam(':datum_quote', $datum_quote);
     $stmt->bindParam(':TK_uporabnik', $TK_uporabnik);
-    $stmt->bindParam(':TK_avtor', $TK_avtor);
+    $stmt->bindParam(':avtorQuota', $avtorQuota);
     $stmt->execute();
 
     //vzame zadni insertan id
@@ -189,7 +189,7 @@ try {
           <!-- Input for autor-->
           <div class="input-box-create">
             <span class="details-create">Author</span>
-            <input type="text" placeholder="Enter an Author" name="TK_avtor" required>
+            <input type="text" placeholder="Enter an Author" name="avtorQuota" required>
           </div>
         
         </div>

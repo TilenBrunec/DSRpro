@@ -108,8 +108,8 @@ $stmtNaslov->setFetchMode(PDO::FETCH_ASSOC);
 
 <?php
 
-$stmt = $pdo->query("SELECT quote.*, kategorija.*, avtor.* ,uporabnik.*FROM quote INNER JOIN quote_kategorija ON quote_kategorija.TK_quote = quote.id_quote 
-INNER JOIN kategorija ON quote_kategorija.TK_kategorija = kategorija.id_kategorija INNER JOIN avtor ON avtor.id_avtor = quote.TK_avtor 
+$stmt = $pdo->query("SELECT quote.*, kategorija.*,uporabnik.*FROM quote INNER JOIN quote_kategorija ON quote_kategorija.TK_quote = quote.id_quote 
+INNER JOIN kategorija ON quote_kategorija.TK_kategorija = kategorija.id_kategorija 
 INNER JOIN uporabnik on uporabnik.id_uporabnik = quote.TK_uporabnik  WHERE quote_kategorija.TK_kategorija = $id_kategorija 
     ");
 $stmt->setFetchMode(PDO::FETCH_ASSOC); // rezultat naj bo asociativno polje ()
@@ -131,7 +131,7 @@ $stmt->setFetchMode(PDO::FETCH_ASSOC); // rezultat naj bo asociativno polje ()
         </div>
         
         <div class="quote-author">
-            Author: <span><?php echo $row['imeInPriimek']; ?></span>
+            Author: <span><?php echo $row['avtorQuota']; ?></span>
         </div>
         <div class="quote-user">
             Added by: <?php echo $row['upo_ime']; ?>
