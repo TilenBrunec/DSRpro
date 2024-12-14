@@ -1,6 +1,7 @@
 <?php
     session_start();
     include('pdo-connection.php');
+
     if (isset($_GET['odjava']) && $_GET['odjava'] == 1) {
       session_unset();
       session_destroy();
@@ -155,6 +156,11 @@ $stmt->setFetchMode(PDO::FETCH_ASSOC); // rezultat naj bo asociativno polje ()
     <!-- 
 ============================================================
 =                                                          =
+
+
+
+
+
 =                         FOOTER                            =
 =                                                          =
 ============================================================
