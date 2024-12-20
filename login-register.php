@@ -119,33 +119,65 @@ select {
 <?php
 ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);
 
-// Check if the form was submitted
-if (isset($_POST['upo_ime']) && isset($_POST['mail']) && isset($_POST['geslo']) && isset($_POST['TK_drzava'])) {
-    // Retrieve form data
-    $upo_ime = $_POST['upo_ime'];
-    $vloga = 0;
-    $mail = $_POST['mail'];
-    $geslo = $_POST['geslo'];
-    $slika = isset($_POST['slika']) ? $_POST['slika'] : null;
-    $TK_drzava = $_POST['TK_drzava'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $errors = [];
 
-    // Hash the password using SHA256
-    $hashed_geslo = hash('sha256', $geslo);
+    // Check upo_ime with regular expression
+    if (preg_match('/^[A-Za-z0-9_\'.\-]{4,20}$/', $_POST['upo_ime'])) {
+        $upo_ime = htmlspecialchars(trim($_POST['upo_ime']));
+    } else {
+        $errors[] = 'Please enter a valid username (4-20 characters, only letters, digits, underscores, hyphens, apostrophes, and dots allowed).';
+    }
 
-    // Prepare SQL query
-    $stmt = $pdo->prepare("INSERT INTO uporabnik(upo_ime, vloga, mail, geslo, slika, TK_drzava) 
-    VALUES (:upo_ime, :vloga, :mail, :geslo, :slika, :TK_drzava)");
+    // Check mail with regular expression
+    if (preg_match('/^[^@\s]+@[^@\s]+\.[^@\s]+$/', $_POST['mail'])) {
+        $mail = htmlspecialchars(trim($_POST['mail']));
+    } else {
+        $errors[] = 'Please enter a valid email address.';
+    }
 
-    // Bind parameters to the statement
-    $stmt->bindParam(':upo_ime', $upo_ime);
-    $stmt->bindParam(':vloga', $vloga);
-    $stmt->bindParam(':mail', $mail);
-    $stmt->bindParam(':geslo', $hashed_geslo);
-    $stmt->bindParam(':slika', $slika);
-    $stmt->bindParam(':TK_drzava', $TK_drzava);
+    // Check and hash password (no regex needed here in this case)
+    if (!empty($_POST['geslo'])) {
+        $geslo = $_POST['geslo'];
+        $hashed_geslo = hash('sha256', $geslo);
+    } else {
+        $errors[] = 'Please enter a password.';
+    }
 
-    // Execute the statement
-    $stmt->execute();
+    // Validate TK_drzava
+    if (isset($_POST['TK_drzava']) && !empty($_POST['TK_drzava'])) {
+        $TK_drzava = intval($_POST['TK_drzava']);
+    } else {
+        $errors[] = 'Please select a valid country.';
+    }
+
+    // If no errors, insert into the database
+    if (empty($errors)) {
+        $slika = isset($_POST['slika']) ? $_POST['slika'] : null;
+        $vloga = 0;
+
+        // Prepare SQL query
+        $stmt = $pdo->prepare("INSERT INTO uporabnik (upo_ime, vloga, mail, geslo, slika, TK_drzava)
+                               VALUES (:upo_ime, :vloga, :mail, :geslo, :slika, :TK_drzava)");
+
+        // Bind parameters
+        $stmt->bindParam(':upo_ime', $upo_ime);
+        $stmt->bindParam(':vloga', $vloga);
+        $stmt->bindParam(':mail', $mail);
+        $stmt->bindParam(':geslo', $hashed_geslo);
+        $stmt->bindParam(':slika', $slika);
+        $stmt->bindParam(':TK_drzava', $TK_drzava);
+
+        if ($stmt->execute()) {
+           
+        } else {
+            echo '<div class="alert alert-danger" role="alert">An error occurred. Please try again.</div>';
+        }
+    } else {
+        foreach ($errors as $error) {
+            echo '<div class="alert alert-danger" role="alert">' . $error . '</div>';
+        }
+    }
 }
 ?>
 
