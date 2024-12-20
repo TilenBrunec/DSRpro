@@ -117,26 +117,36 @@ select {
 ============================================================
 -->
 <?php
-ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);
+// Include PHPMailer dependencies at the top
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+require 'PHPMailer/Exception.php';
+require 'PHPMailer/PHPMailer.php';
+require 'PHPMailer/SMTP.php';
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $errors = [];
 
-    // Check upo_ime with regular expression
+    // Check upo_ime with regex
     if (preg_match('/^[A-Za-z0-9_\'.\-]{4,20}$/', $_POST['upo_ime'])) {
         $upo_ime = htmlspecialchars(trim($_POST['upo_ime']));
     } else {
-        $errors[] = 'Please enter a valid username (4-20 characters, only letters, digits, underscores, hyphens, apostrophes, and dots allowed).';
+        $errors[] = 'Please enter a valid username.';
     }
 
-    // Check mail with regular expression
+    // Check mail with regex
     if (preg_match('/^[^@\s]+@[^@\s]+\.[^@\s]+$/', $_POST['mail'])) {
         $mail = htmlspecialchars(trim($_POST['mail']));
     } else {
         $errors[] = 'Please enter a valid email address.';
     }
 
-    // Check and hash password (no regex needed here in this case)
+    // Hash password
     if (!empty($_POST['geslo'])) {
         $geslo = $_POST['geslo'];
         $hashed_geslo = hash('sha256', $geslo);
@@ -151,16 +161,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors[] = 'Please select a valid country.';
     }
 
-    // If no errors, insert into the database
     if (empty($errors)) {
         $slika = isset($_POST['slika']) ? $_POST['slika'] : null;
         $vloga = 0;
 
-        // Prepare SQL query
-        $stmt = $pdo->prepare("INSERT INTO uporabnik (upo_ime, vloga, mail, geslo, slika, TK_drzava)
-                               VALUES (:upo_ime, :vloga, :mail, :geslo, :slika, :TK_drzava)");
-
-        // Bind parameters
+        // Insert data into database
+        $stmt = $pdo->prepare("INSERT INTO uporabnik (upo_ime, vloga, mail, geslo, slika, TK_drzava) VALUES (:upo_ime, :vloga, :mail, :geslo, :slika, :TK_drzava)");
         $stmt->bindParam(':upo_ime', $upo_ime);
         $stmt->bindParam(':vloga', $vloga);
         $stmt->bindParam(':mail', $mail);
@@ -169,14 +175,58 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bindParam(':TK_drzava', $TK_drzava);
 
         if ($stmt->execute()) {
-           
+            echo '<div class="alert alert-success">Registration successful!</div>';
+            
+            // Send email to the new user
+            $email_sent = sendRegistrationEmail($mail, $upo_ime);
+            if ($email_sent) {
+                echo '<div class="alert alert-success">A confirmation email has been sent to your address.</div>';
+            } else {
+                echo '<div class="alert alert-danger">Email could not be sent. Please contact support.</div>';
+            }
         } else {
-            echo '<div class="alert alert-danger" role="alert">An error occurred. Please try again.</div>';
+            echo '<div class="alert alert-danger">An error occurred. Please try again.</div>';
         }
     } else {
         foreach ($errors as $error) {
-            echo '<div class="alert alert-danger" role="alert">' . $error . '</div>';
+            echo '<div class="alert alert-danger">' . $error . '</div>';
         }
+    }
+}
+
+/**
+ * Function to send registration email using PHPMailer
+ */
+function sendRegistrationEmail($recipient_email, $recipient_name) {
+    try {
+        $mail = new PHPMailer(true);
+        $mail->isSMTP();
+        $mail->CharSet = 'UTF-8';
+        $mail->Host = "smtp.gmail.com";
+        $mail->SMTPAuth = true;
+        $mail->Username = "dsrdemomailer@gmail.com"; // Your dummy email
+        $mail->Password = "dsrProject";             // Your dummy password
+        $mail->SMTPSecure = "tls";
+        $mail->Port = 587;
+
+        $mail->setFrom("dsrdemomailer@gmail.com", "Your App Name");
+        $mail->addAddress($recipient_email, $recipient_name);
+
+        $mail->isHTML(true);
+        $mail->Subject = "Welcome to Our App, $recipient_name!";
+        $mail->Body = "
+            <p>Dear $recipient_name,</p>
+            <p>Thank you for registering on our platform. We are thrilled to have you!</p>
+            <p>Best regards,</p>
+            <p>Your App Team</p>
+        ";
+        $mail->AltBody = "Dear $recipient_name, Thank you for registering. Welcome!";
+
+        $mail->send();
+        return true;
+    } catch (Exception $e) {
+        error_log("Email sending failed: " . $mail->ErrorInfo);
+        return false;
     }
 }
 ?>
