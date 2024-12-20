@@ -117,7 +117,6 @@ select {
 ============================================================
 -->
 <?php
-// Include PHPMailer dependencies at the top
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -194,40 +193,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-/**
- * Function to send registration email using PHPMailer
- */
+
 function sendRegistrationEmail($recipient_email, $recipient_name) {
-    try {
-        $mail = new PHPMailer(true);
-        $mail->isSMTP();
-        $mail->CharSet = 'UTF-8';
-        $mail->Host = "smtp.gmail.com";
-        $mail->SMTPAuth = true;
-        $mail->Username = "dsrdemomailer@gmail.com"; // Your dummy email
-        $mail->Password = "dsrProject";             // Your dummy password
-        $mail->SMTPSecure = "tls";
-        $mail->Port = 587;
+  try {
+      $mail = new PHPMailer(true);
 
-        $mail->setFrom("dsrdemomailer@gmail.com", "Your App Name");
-        $mail->addAddress($recipient_email, $recipient_name);
+      $mail->isSMTP();
+      $mail->Host = 'smtp.gmail.com';
+      $mail->SMTPAuth = true;
+      $mail->Username = "dsrdemomailer@gmail.com"; // Your dummy email
+      $mail->Password = "hzdv adzz ijxf aqct";             // Your app password
+      $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+      $mail->Port = 587;
 
-        $mail->isHTML(true);
-        $mail->Subject = "Welcome to Our App, $recipient_name!";
-        $mail->Body = "
-            <p>Dear $recipient_name,</p>
-            <p>Thank you for registering on our platform. We are thrilled to have you!</p>
-            <p>Best regards,</p>
-            <p>Your App Team</p>
-        ";
-        $mail->AltBody = "Dear $recipient_name, Thank you for registering. Welcome!";
+      $mail->setFrom('your_email@gmail.com', 'Your App Name');
+      $mail->addAddress($recipient_email, $recipient_name);
 
-        $mail->send();
-        return true;
-    } catch (Exception $e) {
-        error_log("Email sending failed: " . $mail->ErrorInfo);
-        return false;
-    }
+      $mail->isHTML(true);
+      $mail->Subject = "Welcome to Our App, $recipient_name!";
+      $mail->Body = "
+          <p>Dear $recipient_name,</p>
+          <p>Thank you for registering on our platform. We are thrilled to have you!</p>
+          <p>Best regards,</p>
+          <p>Your App Team</p>
+      ";
+      $mail->AltBody = "Dear $recipient_name, Thank you for registering. Welcome!";
+
+      $mail->send();
+      return true;
+  } catch (Exception $e) {
+      error_log("Email sending failed: " . $mail->ErrorInfo);
+      return false;
+  }
 }
 ?>
 
