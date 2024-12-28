@@ -23,6 +23,7 @@ if (!isset($_SESSION['upo_ime'])) {
                 $_SESSION['upo_ime'] = $user['upo_ime'];
                 $_SESSION['sesionid'] = session_id();
                 $_SESSION['userid'] = $user['id_uporabnik'];
+                $_SESSION['vloga'] = $user['vloga']; 
 
                 // Redirect user
                 echo "<script>

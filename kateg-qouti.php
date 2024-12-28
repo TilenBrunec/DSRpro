@@ -15,7 +15,7 @@
       exit;
   }
   
-
+  $userRole = isset($_SESSION['vloga']) ? $_SESSION['vloga'] : null;
 ?>
 
 <!DOCTYPE html>
@@ -117,6 +117,8 @@ $stmtNaslov->setFetchMode(PDO::FETCH_ASSOC);
 $stmt = $pdo->query("SELECT quote.*, kategorija.*,uporabnik.*FROM quote INNER JOIN quote_kategorija ON quote_kategorija.TK_quote = quote.id_quote 
 INNER JOIN kategorija ON quote_kategorija.TK_kategorija = kategorija.id_kategorija 
 INNER JOIN uporabnik on uporabnik.id_uporabnik = quote.TK_uporabnik  WHERE quote_kategorija.TK_kategorija = $id_kategorija 
+ ORDER BY 
+    quote.id_quote DESC;
     ");
 $stmt->setFetchMode(PDO::FETCH_ASSOC); // rezultat naj bo asociativno polje ()
 
@@ -127,8 +129,9 @@ $stmt->setFetchMode(PDO::FETCH_ASSOC); // rezultat naj bo asociativno polje ()
  {
   ?>
   <div class="quote-container">
+  <?php // if ($userRole == 1): ?>
         <div class = "delete-quote"> <img src="picture/bin.png" alt=""> </div>
-
+    <?php // endif; ?>
         <div class="quote-category">
             <span><?php echo $row['vrsta']; ?></span>
         </div>
