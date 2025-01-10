@@ -139,11 +139,11 @@ $stmt->setFetchMode(PDO::FETCH_ASSOC); // rezultat naj bo asociativno polje ()
  {
   ?>
      <div class="quote-container">
-     <?php // if ($userRole == 1): ?>
+     <?php  if ($userRole == 1): ?>
         <a href="?delete_id=<?php echo $row['id_quote']; ?>" class="delete-quote">
             <img src="picture/bin.png" alt="Delete">
         </a>
-    <?php //endif; ?>
+    <?php endif; ?>
         <div class="quote-category">
             <span><?php echo $row['vrsta']; ?></span>
         </div>

@@ -11,7 +11,7 @@ if (!isset($_SESSION['upo_ime'])) {
 
         try {
             // Prepare and execute the query to retrieve the user
-            $stmt = $pdo->prepare("SELECT id_uporabnik, upo_ime, geslo FROM uporabnik WHERE mail = :mail");
+            $stmt = $pdo->prepare("SELECT id_uporabnik, upo_ime, geslo, vloga FROM uporabnik WHERE mail = :mail");
             $stmt->bindParam(':mail', $mail);
             $stmt->execute();
 
@@ -24,6 +24,7 @@ if (!isset($_SESSION['upo_ime'])) {
                 $_SESSION['sesionid'] = session_id();
                 $_SESSION['userid'] = $user['id_uporabnik'];
                 $_SESSION['vloga'] = $user['vloga']; 
+                
 
                 // Redirect user
                 echo "<script>
